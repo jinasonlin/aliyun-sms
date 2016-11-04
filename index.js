@@ -55,7 +55,7 @@ SMS.prototype.send = function(params, options, callback) {
     missing.push(key);
   });
   if (missing.length) {
-    return callback('missing params ' + missing.join(','));
+    return callback === 'function' && callback('missing params ' + missing.join(','));
   }
 
   params.Signature = this._getSignature(params, method);
@@ -77,7 +77,7 @@ SMS.prototype.send = function(params, options, callback) {
     };
     requestParams.form = params;
   } else {
-    return callback('request params error');
+    return callback === 'function' && callback('request params error');
   }
 
   request(requestParams, function (error, response, body) {

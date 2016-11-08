@@ -108,7 +108,7 @@ SMS.prototype._getSignature = function (pkg, method) {
   string = method + '&' + encodeURIComponent('/') + '&' + string;
   // only HMAC-SHA1
   var stringToSign = crypto.createHmac('sha1', this.AccessKeySecret + '&').update(string).digest('base64');
-  return encodeURIComponent(stringToSign);
+  return stringToSign;
 };
 
 SMS.prototype._toQueryString = function (object) {

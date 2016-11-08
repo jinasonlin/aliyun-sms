@@ -81,6 +81,9 @@ SMS.prototype.send = function(params, options, callback) {
   }
 
   request(requestParams, function (error, response, body) {
+    if (params.Format === 'JSON') {
+      body = JSON.parse(body);
+    }
     typeof callback === 'function' && callback(error, body);
   });
 };
